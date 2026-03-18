@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>郭振綱｜BNI 五表精修版</title>
+  <style>
+    :root{
+      --bg:#f4f6fa;
+      --paper:#ffffff;
+      --ink:#101827;
+      --muted:#4b5563;
+      --line:#d7dde7;
+      --line-strong:#c5ceda;
+      --brand:#bf1118;
+      --brand-dark:#8b0e13;
+      --brand-soft:#fff3f3;
+      --soft:#f8fafc;
+      --shadow:0 20px 50px rgba(16,24,39,.08);
+      --radius:24px;
+      --max:1240px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#eef2f6 0%,#f7f9fc 100%);
+      color:var(--ink);
+      font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+      line-height:1.75;
+      font-size:21px;
+      letter-spacing:.01em;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 80px}
+    .hero{
+      background:var(--paper);
+      border:1px solid rgba(191,17,24,.14);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      padding:32px 32px 28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      right:-80px;top:-80px;
+      width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(191,17,24,.12) 0%, rgba(191,17,24,0) 72%);
+      pointer-events:none;
+    }
+    .brandline{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+    .bni{font-size:66px;font-weight:950;color:var(--brand);line-height:1;letter-spacing:-.05em}
+    .meta{font-size:17px;color:var(--muted);text-align:right;font-weight:800}
+    .hero h1{margin:18px 0 6px;font-size:clamp(2.8rem,5vw,4.4rem);line-height:1.02;letter-spacing:-.04em}
+    .hero .sub{font-size:1.48rem;font-weight:950;color:var(--brand);margin-bottom:8px}
+    .hero .lead{margin:0;max-width:1040px;font-size:1.14rem;color:#1f2937;font-weight:700}
+    .hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+    .callout{
+      background:linear-gradient(180deg,#fff,#fbfcff);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px 20px 18px;
+      min-height:100%;
+    }
+    .callout h3{margin:0 0 8px;font-size:1.22rem;color:var(--brand);line-height:1.3}
+    .callout p{margin:0;font-size:1.08rem;font-weight:900;line-height:1.75}
+    .keyword-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .keyword{padding:9px 14px;border-radius:999px;background:var(--brand-soft);color:var(--brand-dark);font-weight:950;font-size:.94rem;border:1px solid rgba(191,17,24,.12)}
+
+    .nav{
+      position:sticky;top:0;z-index:20;
+      margin:20px 0 28px;
+      background:rgba(247,249,252,.92);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(16,24,39,.08);
+      border-radius:18px;
+      padding:10px;
+      box-shadow:0 10px 25px rgba(16,24,39,.05);
+    }
+    .nav ul{list-style:none;margin:0;padding:0;display:flex;gap:10px;overflow:auto}
+    .nav a{display:block;white-space:nowrap;padding:12px 16px;border-radius:12px;background:#fff;border:1px solid var(--line);font-size:1rem;font-weight:950;color:#374151}
+    .nav a:hover{border-color:rgba(191,17,24,.45);color:var(--brand)}
+
+    .section{margin-top:28px}
+    .section-title{margin:0 0 14px;font-size:2rem;line-height:1.12;letter-spacing:-.02em}
+    .paper{background:var(--paper);border:1px solid rgba(16,24,39,.08);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .ref-line{
+      margin:18px;
+      background:linear-gradient(135deg,#111827,#1f2937);
+      color:#fff;
+      border-radius:18px;
+      padding:18px 20px;
+      font-size:1.18rem;
+      font-weight:950;
+      line-height:1.75;
+    }
+
+    table{width:100%;border-collapse:collapse}
+    th,td{border:1px solid var(--line);padding:18px 18px;vertical-align:top}
+    th.band{background:#f2f5f9;font-size:1.16rem;font-weight:950;text-align:center;color:#111827}
+    th.label{width:210px;background:#fafbfc;font-size:1.02rem;font-weight:950;text-align:center;color:#111827}
+    td{font-size:1.03rem;color:#111827}
+    .triple td{width:33.33%}
+    .bigline{font-size:1.16rem;font-weight:950;line-height:1.7}
+    .value-block p{margin:.2rem 0}
+    .value-block ul{margin:.15rem 0 .15rem 1.2rem;padding:0}
+    .value-block li{margin:.15rem 0}
+    .red{color:var(--brand);font-weight:950}
+
+    .gains-grid,.network-grid,.dance-grid,.refer-grid{display:grid;gap:16px;padding:18px}
+    .gains-grid{grid-template-columns:1fr 1fr}
+    .network-grid{grid-template-columns:1fr 1fr}
+    .dance-grid{grid-template-columns:1fr 1fr}
+    .refer-grid{grid-template-columns:repeat(3,1fr)}
+    .card{border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;background:#fff}
+    .card.soft{background:linear-gradient(180deg,#fcfdff,#f7f9fc)}
+    .kicker{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);font-weight:950}
+    .card h3{margin:5px 0 10px;font-size:1.28rem;line-height:1.35}
+    .card p{margin:.18rem 0;font-size:1.02rem}
+    .card ul{margin:.1rem 0 .1rem 1.15rem;padding:0}
+    .card li{margin:.22rem 0}
+
+    .client-list{display:grid;gap:14px;padding:18px}
+    .client-card{display:grid;grid-template-columns:82px 250px 1fr;border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;background:#fff}
+    .client-no{background:#101418;color:#fff;font-weight:950;font-size:1.58rem;display:flex;align-items:center;justify-content:center;padding:16px}
+    .client-name{background:#f6f8fb;border-right:1px solid var(--line);padding:18px 16px;font-weight:950;font-size:1.14rem;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.5}
+    .client-body{padding:16px 18px}
+    .client-body p{margin:.16rem 0;font-size:1.01rem}
+    .client-body .tagline{font-size:1.08rem;font-weight:950}
+    .fit{margin-top:10px;padding:11px 13px;border-radius:14px;background:#f7fafc;border:1px solid var(--line);font-weight:900}
+
+    .footer{margin-top:24px;color:var(--muted);text-align:center;font-size:1rem}
+    .print-btn{position:fixed;right:18px;bottom:18px;z-index:25;background:#111827;color:#fff;border:none;border-radius:999px;padding:14px 18px;font-size:1rem;font-weight:950;box-shadow:0 14px 30px rgba(16,24,39,.18);cursor:pointer}
+
+    @media (max-width:1100px){
+      .hero-grid,.gains-grid,.network-grid,.dance-grid,.refer-grid{grid-template-columns:1fr}
+      .client-card{grid-template-columns:72px 1fr}
+      .client-body{grid-column:1 / -1;border-top:1px solid var(--line)}
+      .client-name{justify-content:flex-start;text-align:left}
+    }
+    @media (max-width:700px){
+      body{font-size:18px}
+      .wrap{padding:14px 12px 72px}
+      .hero{padding:22px 16px 18px;border-radius:24px}
+      .bni{font-size:48px}
+      .hero h1{font-size:2.38rem}
+      .hero .sub{font-size:1.16rem}
+      .hero .lead{font-size:1.02rem}
+      th,td{padding:14px 12px}
+      th.label{width:106px;font-size:.95rem}
+      .section-title{font-size:1.55rem}
+      .callout p,.ref-line{font-size:1.05rem}
+      .client-name{font-size:1.02rem}
+      .client-no{font-size:1.26rem}
+      .print-btn{right:12px;bottom:12px;padding:12px 14px}
+    }
+    @media print{
+      body{background:#fff}
+      .wrap{max-width:none;padding:0}
+      .nav,.print-btn{display:none !important}
+      .hero,.paper{box-shadow:none}
+      .section{break-inside:avoid}
+      .client-card,.card,.ref-line{break-inside:avoid}
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">列印 / 匯出 PDF</button>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="brandline">
+        <div class="bni">BNI.</div>
+        <div class="meta">
+          <div>大弘分會</div>
+          <div>郭振綱｜BNI 五表精修版</div>
+        </div>
+      </div>
+      <h1>郭振綱 Gary</h1>
+      <div class="sub">企業用車決策顧問｜我不做比價，我做決策。</div>
+      <p class="lead">我協助企業主、自營商與專業人士，把買車、租車、租購的差異一次理清楚。重點不是先丟報價，而是先把總成本、現金流、管理便利性與決策風險講明白。</p>
+      <div class="hero-grid">
+        <div class="callout">
+          <h3>最該介紹給我的人</h3>
+          <p>有統編、可報帳，近期 3-12 個月內有買車、換車、主管配車、公務車或車隊汰換需求的企業主、主管與自營商。</p>
+          <div class="keyword-row">
+            <span class="keyword">今年稅很重</span>
+            <span class="keyword">想換車但不想一次付現</span>
+            <span class="keyword">公司要配車</span>
+            <span class="keyword">想保留現金流</span>
+            <span class="keyword">公司車管理太麻煩</span>
+          </div>
+        </div>
+        <div class="callout">
+          <h3>最常出現的時機</h3>
+          <p>當客戶開始想：「到底該買還是租？」「這筆錢要不要先留在公司？」「公司車怎麼做比較好管理？」這就是我最適合進場的時候。</p>
+        </div>
+        <div class="callout">
+          <h3>夥伴一句話介紹我</h3>
+          <p>「我認識一位合作夥伴，他不是單純報價，而是專門幫企業主把買、租、租購與總成本一次理清楚的人。你先跟他聊 15 分鐘，就知道怎麼做比較適合。」</p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <ul>
+        <li><a href="#member">會員資料表</a></li>
+        <li><a href="#gains">GAINS 工作表</a></li>
+        <li><a href="#clients">最近的十位客戶表</a></li>
+        <li><a href="#network">業務人脈圈</a></li>
+        <li><a href="#dance">DANCE CARD</a></li>
+      </ul>
+    </nav>
+
+    <section id="member" class="section">
+      <h2 class="section-title">會員資料表</h2>
+      <div class="paper">
+        <table>
+          <tr><th colspan="4" class="band">商業資訊</th></tr>
+          <tr><th class="label">公司名稱</th><td colspan="3">格上汽車租賃股份有限公司</td></tr>
+          <tr><th class="label">職業</th><td colspan="3">業務主任</td></tr>
+          <tr><th class="label">地點</th><td colspan="3">新北市 新店區</td></tr>
+          <tr><th class="label">前一份工作類型</th><td colspan="3">MG 南港／內湖所 所長</td></tr>
+
+          <tr><th colspan="4" class="band">個人資訊</th></tr>
+          <tr class="triple">
+            <th class="label">家庭資訊</th><td>a. 配偶：0</td><td>b. 孩子：0</td><td>c. 寵物：貓咪</td>
+          </tr>
+          <tr><th class="label">業餘愛好</th><td colspan="3">羽球、重機、電影</td></tr>
+          <tr><th class="label">感興趣的活動</th><td colspan="3">商務交流、自我成長課程、經營管理、銷售與決策主題</td></tr>
+          <tr><th class="label">居住地</th><td colspan="3">新北市 汐止區</td></tr>
+
+          <tr><th colspan="4" class="band">綜合資訊</th></tr>
+          <tr>
+            <th class="label">我強烈的願望是</th>
+            <td colspan="3" class="value-block">
+              <p class="bigline">我要把用車規劃做成一套可被持續轉介紹的專業服務。</p>
+              <p>我希望未來夥伴一想到<strong class="red">買車、換車、配車、保留現金流</strong>，第一個想到的人就是我。</p>
+            </td>
+          </tr>
+          <tr>
+            <th class="label">不為人知的秘密</th>
+            <td colspan="3" class="value-block">
+              <p>我曾到英國工作與求學，也做過和原本職涯很不同的工作。</p>
+              <p>我也曾刻意訓練自己和陌生人開口互動，讓自己從不敢主動，變成能快速建立信任。</p>
+            </td>
+          </tr>
+          <tr>
+            <th class="label">我成功的關鍵是</th>
+            <td colspan="3" class="value-block">
+              <ul>
+                <li><strong>自我復盤：</strong>每次成交與失敗，我都會拆解原因並快速修正。</li>
+                <li><strong>先聽再判斷：</strong>資訊不明確時，我先提問、先釐清，不急著下結論。</li>
+                <li><strong>流程化能力：</strong>我會把方法寫成 SOP，讓服務可複製、可交付。</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <div class="ref-line">引薦句：當你身邊有人開始想「現在到底該買、該租，還是先把現金留著」，請先想到我。</div>
+      </div>
+    </section>
+
+    <section id="gains" class="section">
+      <h2 class="section-title">GAINS 工作表</h2>
+      <div class="paper">
+        <div class="gains-grid">
+          <div class="card soft">
+            <div class="kicker">Goals</div>
+            <h3>目標</h3>
+            <p><strong class="red">BNI：</strong>每月穩定取得 3 組高品質租賃／用車規劃客戶。</p>
+            <p><strong class="red">合作：</strong>建立 5-8 位固定互推夥伴，形成可複製合作流程。</p>
+            <p><strong class="red">創業：</strong>把用車規劃、轉介紹與交付系統整合成未來事業基礎。</p>
+            <hr style="border:none;border-top:1px solid var(--line);margin:14px 0;">
+            <p><strong>2026：</strong>完成 Power Team，累積 10 組租賃客戶。</p>
+            <p><strong>2027：</strong>新增累積 20 組租賃客戶，新事業體上線。</p>
+            <p><strong>2028：</strong>累積租賃客戶 50 組，建立可複製模式。</p>
+            <p><strong>2029：</strong>規劃創會，形成可擴張合作系統。</p>
+          </div>
+          <div class="card soft">
+            <div class="kicker">Accomplishment / Interest</div>
+            <h3>成就與興趣</h3>
+            <ul>
+              <li>2023、2024 年度最佳銷售</li>
+              <li>曾任 MG 南港／內湖所所長</li>
+              <li>擅長團隊管理、KPI 設計、流程制度建立</li>
+              <li>喜歡戶外走走、料理研究、旅行與人文場景</li>
+              <li>對商業模式、自我成長、領導管理高度投入</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="kicker">Networks</div>
+            <h3>人際關係</h3>
+            <ul>
+              <li>醫療體系：醫院副院長、整形外科／醫美院長</li>
+              <li>裝修建材：系統櫥櫃與商空相關業主</li>
+              <li>車輛通路：二手車盤商</li>
+              <li>運動社群：羽球教練、場館業主、匹克球教練</li>
+              <li>餐飲零售：品牌業務與餐飲烘焙主管</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="kicker">Skills</div>
+            <h3>技巧</h3>
+            <ul>
+              <li><strong>總成本試算：</strong>買車、純租、租購整體比較</li>
+              <li><strong>節稅與現金流溝通：</strong>用老闆與會計師都聽得懂的語言說明</li>
+              <li><strong>方案設計 SOP：</strong>需求盤點 - 試算 - 比較 - 成交 - 續約</li>
+              <li><strong>專案管理交付：</strong>合約、發票、保險、保養與追蹤整合</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ref-line">引薦句：當你的客戶重視統編報帳、現金流安排、公司配車或制度化管理時，請把我拉進來。</div>
+      </div>
+    </section>
+
+    <section id="clients" class="section">
+      <h2 class="section-title">最近的十位客戶表</h2>
+      <div class="paper">
+        <div class="client-list">
+          <article class="client-card">
+            <div class="client-no">1</div>
+            <div class="client-name">艾迪兒創意國際有限公司</div>
+            <div class="client-body">
+              <p class="tagline">法人／企業主｜BMW 330i Touring｜60期｜月付 NT$53,000</p>
+              <p><strong>客戶在意：</strong>不是買不起，而是不想把現金壓在車上。</p>
+              <p><strong>我提供的價值：</strong>把高額支出改成可控月付，兼顧費用化與資金彈性。</p>
+              <div class="fit">最像的下一位客戶：準備升級主管座車或公司車，但不想一次付現的老闆。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">2</div>
+            <div class="client-name">予榮資產管理顧問有限公司</div>
+            <div class="client-body">
+              <p class="tagline">法人／企業主｜TESLA Model Y｜60期｜月付 NT$26,700</p>
+              <p><strong>客戶在意：</strong>想升級用車，又想把資金留給營運與投資。</p>
+              <p><strong>我提供的價值：</strong>用租賃把月付固定化，讓方案更好規劃、更好報帳。</p>
+              <div class="fit">最像的下一位客戶：有統編可報帳、想升級但要保留現金的企業主。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">3</div>
+            <div class="client-name">新鑫股份有限公司</div>
+            <div class="client-body">
+              <p class="tagline">法人／企業配車｜企業純租 MG HS</p>
+              <p><strong>客戶在意：</strong>配車管理麻煩、費用分散、希望成本透明。</p>
+              <p><strong>我提供的價值：</strong>把保養、稅金、保險整合成固定月付，降低管理負擔。</p>
+              <div class="fit">最像的下一位客戶：有公務車、主管配車、業務車需求的企業與部門主管。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">4</div>
+            <div class="client-name">銓盛鷹架五金有限公司</div>
+            <div class="client-body">
+              <p class="tagline">法人／中小企業主｜現金購入 MG G50</p>
+              <p><strong>客戶在意：</strong>多人乘載、商務接送與空間實用性。</p>
+              <p><strong>我提供的價值：</strong>快速釐清需求與配置，讓決策更有效率。</p>
+              <div class="fit">最像的下一位客戶：工程行、五金建材、需要大空間車款的企業主。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">5</div>
+            <div class="client-name">張立宏／饒河街教會</div>
+            <div class="client-body">
+              <p class="tagline">個人／團體用車｜現金購入 MG G50</p>
+              <p><strong>客戶在意：</strong>活動接送、多人成行、預算與實用兼顧。</p>
+              <p><strong>我提供的價值：</strong>用使用情境協助選車，讓客戶更快做出安心決策。</p>
+              <div class="fit">最像的下一位客戶：教會、社團、大家庭，需要接送與大空間用車的人。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">6</div>
+            <div class="client-name">賴楷勝</div>
+            <div class="client-body">
+              <p class="tagline">自營商／營業用車｜貸款購入 MG G50</p>
+              <p><strong>客戶在意：</strong>靠車營業，月付要扛得住，車要穩。</p>
+              <p><strong>我提供的價值：</strong>協助找到可負擔的取得方式，兼顧營運現金流。</p>
+              <div class="fit">最像的下一位客戶：多元計程車、自營接送、重視月付與穩定用車的人。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">7</div>
+            <div class="client-name">闕怡萱</div>
+            <div class="client-body">
+              <p class="tagline">個人／家庭用車｜現金購入 MG G50</p>
+              <p><strong>客戶在意：</strong>家庭需求升級，希望一次買到位。</p>
+              <p><strong>我提供的價值：</strong>快速盤點需求，直接給出合適車款與方式建議。</p>
+              <div class="fit">最像的下一位客戶：準備升級大空間車款、重視接送用途的家庭客戶。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">8</div>
+            <div class="client-name">張麗君</div>
+            <div class="client-body">
+              <p class="tagline">個人／室內裝修｜現金購入 MG G50</p>
+              <p><strong>客戶在意：</strong>工作與生活兼用，需要載物也需要載人。</p>
+              <p><strong>我提供的價值：</strong>用情境選車，兼顧工作載物與日常乘坐。</p>
+              <div class="fit">最像的下一位客戶：室內設計、裝修、工程相關自營者，需要多功能大空間車款的人。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">9</div>
+            <div class="client-name">林郁鈞</div>
+            <div class="client-body">
+              <p class="tagline">自營商／印刷＋多元計程車｜貸款購入 MG G50</p>
+              <p><strong>客戶在意：</strong>前期資金壓力、月付可負擔、用車不中斷。</p>
+              <p><strong>我提供的價值：</strong>用合理取得方式降低壓力，確保營運穩定。</p>
+              <div class="fit">最像的下一位客戶：印刷、外務、多元計程車等靠車吃飯、重視成本控管的人。</div>
+            </div>
+          </article>
+
+          <article class="client-card">
+            <div class="client-no">10</div>
+            <div class="client-name">粘芸溶</div>
+            <div class="client-body">
+              <p class="tagline">個人購車｜現金購入 MG PHEV</p>
+              <p><strong>客戶在意：</strong>想升級新能源，同時在意成本與配備體驗。</p>
+              <p><strong>我提供的價值：</strong>協助理解 PHEV 使用情境與成本效益，再做決定。</p>
+              <div class="fit">最像的下一位客戶：對新能源車有興趣、重視節能與科技配備的升級型客戶。</div>
+            </div>
+          </article>
+        </div>
+        <div class="ref-line">引薦句：只要對方不是單純拿報價去比價，而是想知道「哪種方式比較適合自己」，就是高品質引薦。</div>
+      </div>
+    </section>
+
+    <section id="network" class="section">
+      <h2 class="section-title">業務人脈圈</h2>
+      <div class="paper">
+        <div class="network-grid">
+          <div class="card soft"><div class="kicker">1</div><h3>會計師／記帳士／稅務顧問</h3><p><strong>關鍵字：</strong>稅很重、想報帳、想保留現金。</p><p><strong>一句話：</strong>他會把買、租、租購的總成本與現金流差異講清楚。</p></div>
+          <div class="card soft"><div class="kicker">2</div><h3>產險經紀人</h3><p><strong>關鍵字：</strong>公司車麻煩、保險分散、想整合。</p><p><strong>一句話：</strong>他能把用車費用與管理整合得更清楚。</p></div>
+          <div class="card"><div class="kicker">3</div><h3>企業總務／行政採購／車隊窗口</h3><p><strong>關鍵字：</strong>公務車、主管車、管理太雜、費用難控。</p><p><strong>一句話：</strong>他做的不是單一報價，而是制度化管理。</p></div>
+          <div class="card"><div class="kicker">4</div><h3>銀行 RM／企金／理財顧問</h3><p><strong>關鍵字：</strong>想留額度、保留現金、公司要增車。</p><p><strong>一句話：</strong>他能把用車支出做成可控月付。</p></div>
+          <div class="card"><div class="kicker">5</div><h3>連鎖加盟總部／物流公司／工程承攬商</h3><p><strong>關鍵字：</strong>展店、擴編、車隊汰換、多台車管理。</p><p><strong>一句話：</strong>他做的是企業車隊規劃，不只是報價。</p></div>
+          <div class="card"><div class="kicker">6</div><h3>商辦仲介／商空裝修／工程統包</h3><p><strong>關鍵字：</strong>搬新辦、擴店、增員、老闆升級形象。</p><p><strong>一句話：</strong>公司升級時，他很適合先把用車方式理清楚。</p></div>
+          <div class="card"><div class="kicker">7</div><h3>ERP／會計系統／薪資系統服務商</h3><p><strong>關鍵字：</strong>折舊壓力、資產汰換、報表優化。</p><p><strong>一句話：</strong>他可以先做一份用車／汰換試算。</p></div>
+          <div class="card"><div class="kicker">8</div><h3>法律顧問／律師</h3><p><strong>關鍵字：</strong>資產切割、風險隔離、名義安排。</p><p><strong>一句話：</strong>他能把用車安排做得更合規、更可控。</p></div>
+          <div class="card"><div class="kicker">9</div><h3>豪華品牌新車業代／主管</h3><p><strong>關鍵字：</strong>付款方式卡關、想比較買租、想用公司名義。</p><p><strong>一句話：</strong>他能把付款結構與總成本一次算清楚。</p></div>
+          <div class="card"><div class="kicker">10</div><h3>高階二手車商／頂級包膜美容店</h3><p><strong>關鍵字：</strong>想控月付、怕殘值、準備換車。</p><p><strong>一句話：</strong>他能把買、租、租購與成本管理講清楚。</p></div>
+        </div>
+        <div class="ref-line">引薦句：請優先幫我留意會計師、產險經紀、企業總務／車隊窗口、銀行 RM，這四類最容易形成高品質合作。</div>
+      </div>
+    </section>
+
+    <section id="dance" class="section">
+      <h2 class="section-title">DANCE CARD</h2>
+      <div class="paper">
+        <div class="dance-grid">
+          <div class="card soft">
+            <div class="kicker">主要產品 / 主要服務</div>
+            <h3>我交付的不是報價單，而是用車決策。</h3>
+            <ul>
+              <li>企業／個人車輛租賃（純租／租購）</li>
+              <li>用車方案規劃：成本、現金流、管理與決策建議</li>
+              <li>買車、租車、租購整體比較</li>
+              <li>合約、發票、保險、保養與後續管理整合</li>
+            </ul>
+          </div>
+          <div class="card soft">
+            <div class="kicker">我的獨特銷售主張</div>
+            <h3>我是企業用車決策顧問，不是單純報價業務。</h3>
+            <ul>
+              <li>我先協助客戶判斷：現在適合買、租，還是租購。</li>
+              <li>我不是比最低價，我是找最可控、最合適、最好交代的方案。</li>
+              <li>我不只負責成交，也負責交付與後續管理。</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="refer-grid" style="padding-top:0;">
+          <div class="card">
+            <div class="kicker">一般引薦</div>
+            <h3>有用車需求，但還沒決定怎麼做的人</h3>
+            <p>有統編的企業主、自營商、專業人士，或近期準備買車、換車的人。</p>
+          </div>
+          <div class="card">
+            <div class="kicker">理想引薦</div>
+            <h3>有節稅、資金調度或公司配車需求的人</h3>
+            <p>獲利穩定、稅壓高、想保留現金與額度，或要把公司用車制度化的企業主。</p>
+          </div>
+          <div class="card">
+            <div class="kicker">夢幻引薦</div>
+            <h3>能長期互推的核心合作夥伴</h3>
+            <p>會計師、產險經紀、豪華品牌業代主管、車隊決策者、企業總務與行政採購窗口。</p>
+          </div>
+        </div>
+
+        <div class="refer-grid">
+          <div class="card">
+            <div class="kicker">關鍵字</div>
+            <h3>聽到這些話就能想到我</h3>
+            <ul>
+              <li>今年稅很重</li>
+              <li>公司要買車／換車／配車</li>
+              <li>想保留現金流</li>
+              <li>不想一次付現</li>
+              <li>公司車管理太麻煩</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="kicker">正確定位</div>
+            <h3>夥伴最好這樣介紹我</h3>
+            <p class="bigline">振綱不是單純做租賃，他是專門幫企業主把用車方式做對決策的人。</p>
+          </div>
+          <div class="card">
+            <div class="kicker">低門檻對接</div>
+            <h3>先聊 15-20 分鐘就夠</h3>
+            <p>我可以先做初步試算與比較，讓客戶拿著資料再跟會計師、合夥人或主管討論。</p>
+          </div>
+        </div>
+
+        <div class="ref-line">引薦句：老闆如果最近有購車、換車、配車，或想知道買和租哪個更適合，請先讓我聊 15 分鐘，我會把方向理清楚。</div>
+      </div>
+    </section>
+
+    <div class="footer">郭振綱 Gary｜格上汽車租賃股份有限公司｜BNI 五表精修版</div>
+  </div>
+</body>
+</html>
